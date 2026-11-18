@@ -1,0 +1,9 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "marketscope-research-terminal",
+  "main": ".output/server/index.mjs",
+  "compatibility_date": "2026-11-18",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": { "directory": ".output/public", "binding": "ASSETS" },
+  "observability": { "enabled": true }
+}
