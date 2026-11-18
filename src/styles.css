@@ -136,3 +136,34 @@
 @utility num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
 @utility panel { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); }
 @utility eyebrow { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted-foreground); font-weight: 600; }
+
+/* MarketScope visual polish: restrained depth, clearer hierarchy and consistent controls. */
+@layer base {
+  body {
+    background-image: radial-gradient(ellipse at 8% -12%, oklch(0.27 0.055 220 / 0.34), transparent 42%),
+      radial-gradient(ellipse at 100% 0%, oklch(0.23 0.045 275 / 0.22), transparent 34%);
+    background-attachment: fixed;
+  }
+  ::selection { background: oklch(0.58 0.13 205 / 0.35); color: var(--foreground); }
+  input, select, textarea, button { transition: border-color 140ms ease, background-color 140ms ease, box-shadow 140ms ease, transform 140ms ease; }
+  button:active:not(:disabled) { transform: translateY(1px); }
+  input:focus-visible, select:focus-visible, textarea:focus-visible {
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px oklch(0.8 0.12 200 / 0.13);
+    outline: none;
+  }
+}
+.panel {
+  box-shadow: 0 8px 28px oklch(0.06 0.02 255 / 0.12);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+.panel:hover { border-color: oklch(0.42 0.035 225); }
+.eyebrow { font-family: var(--font-mono); }
+.num { font-variant-numeric: tabular-nums; }
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: oklch(0.38 0.025 250); border: 2px solid transparent; background-clip: padding-box; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: oklch(0.5 0.04 220); background-clip: padding-box; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
