@@ -9,7 +9,7 @@ export const Route=createFileRoute("/lab")({validateSearch:(s:Record<string,unkn
 const initial:Scenario[]=[{name:"Bear",revGrowth:2,netMargin:12,pe:14,probability:25},{name:"Base",revGrowth:8,netMargin:18,pe:20,probability:50},{name:"Bull",revGrowth:15,netMargin:23,pe:27,probability:25}];
 const field="h-9 w-full rounded-md border border-border bg-input/40 px-3 text-sm num";
 function Lab(){const [ticker,setTicker]=useState("AAPL"),[revenue,setRevenue]=useState("400000000000"),[shares,setShares]=useState("15000000000"),[years,setYears]=useState("3"),[scenarios,setScenarios]=useState(initial);
-const values=useMemo(()=>scenarios.map(s=>impliedValue(Number(revenue),Number(shares),s,Number(years))),[revenue,shares,years,scenarios]),[scenarios]);
+const values=useMemo(()=>scenarios.map(s=>impliedValue(Number(revenue),Number(shares),s,Number(years))),[revenue,shares,years,scenarios]);
 const weight=scenarios.reduce((a,s)=>a+s.probability,0),valid=Number(revenue)>0&&Number(shares)>0&&Number(years)>0&&weight===100&&scenarios.every(s=>s.probability>=0);
 const update=(i:number,k:keyof Scenario,v:string)=>setScenarios(old=>old.map((s,j)=>j===i?{...s,[k]:Number(v)}:s));
 const weighted=valid?values.reduce<number>((a,v,i)=>a+(v??0)*scenarios[i].probability/100,0):null;
